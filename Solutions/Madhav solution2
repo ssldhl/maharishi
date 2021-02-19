@@ -1,0 +1,38 @@
+public class Madhav {
+
+    static int isMadhavArray(int[] a)
+    {
+        int sum = 0, count = 2, index = 0, lastIndex = 0, i = 1;
+        int n = a.length;
+
+        while (i<n)
+        {
+            lastIndex = index + count;
+            if(lastIndex >= n) return 0;
+            for (int k = i; k <= lastIndex; k++)
+                sum += a[k];
+            if(sum != a[0]) return 0;
+
+            sum = 0; index = lastIndex; count++; i = lastIndex+1;
+        }
+
+        return 1;
+    }
+
+    public static void main(String[] args) {
+        int[] n1 = {2, 1, 1};
+        int[] n2 = {2, 1, 1, 4, -1, -1};
+        int[] n3 = {6, 2, 4, 2, 2, 2, 1, 5, 0, 0};
+        int[] n4 = {18, 9, 10, 6, 6, 6};
+        int[] n5 = {-6, -3, -3, 8, -5, -4};
+        int[] n6 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, -2, -1};
+        int[] n7 = {3, 1, 2, 3, 0};;
+        System.out.println(Madhav.isMadhavArray(n1));
+        System.out.println(Madhav.isMadhavArray(n2));
+        System.out.println(Madhav.isMadhavArray(n3));
+        System.out.println(Madhav.isMadhavArray(n4));
+        System.out.println(Madhav.isMadhavArray(n5));
+        System.out.println(Madhav.isMadhavArray(n6));
+        System.out.println(Madhav.isMadhavArray(n7));
+    }
+}
