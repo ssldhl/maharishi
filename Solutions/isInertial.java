@@ -21,47 +21,29 @@ public class isInertial{
 	}
 
 	static int isInertial(int[] a){
-		int isInertial = 0;
-		boolean containsOddValue = false;
-		int maxValue = Integer.MIN_VALUE;
-		int[] oddValues = new int[a.length];
-		int[] evenValues = new int[a.length];
-		int oddValuesIndex = 0;
-		int evenValuesIndex = 0;
-		for(int index = 0; index < a.length; index++){
-			if((a[index] % 2) != 0){
-				containsOddValue = true;
-				oddValues[oddValuesIndex] = a[index];
-				oddValuesIndex++;
-			}else{
-				evenValues[evenValuesIndex] = a[index];
-				evenValuesIndex++;
-			}
-			if(a[index] > maxValue){
-				maxValue = a[index];
-			}
+		int countOdd = 0;
+		int max = Integer.MIN_VALUE;;
+		for (int i = 0; i < a.length; i++) {
+		    if (a[i] > max) {
+			max = a[i];
+		    }
+		    if (a[i] % 2 != 0) {
+			countOdd++;
+		    }
 		}
-		if(containsOddValue){
-			if(maxValue % 2 == 0){
-				for(int oddIndex = 0; oddIndex < oddValuesIndex; oddIndex++){
-					for(int evenIndex = 0; evenIndex < evenValuesIndex; evenIndex++){
-						if(evenValues[evenIndex] != maxValue){
-							if(oddValues[oddIndex] > evenValues[evenIndex]){
-								isInertial = 1;
-							}else{
-								isInertial = 0;
-								break;
-							}
-						}else{
-							isInertial = 1;
-						}
-					}
-					if(isInertial == 0){
-						break;
-					}
-				}
-			}
+		if (countOdd == 0) {
+		    return 0;
 		}
-		return isInertial;
+		if (max % 2 != 0) {
+		    return 0;
+		}
+		for (int i = 0; i < a.length; i++) {
+		    for (int j = 0; j < a.length; j++) {
+			if (a[i] % 2 != 0 && a[j] % 2 == 0 && a[j] != max && a[i] < a[j]) {
+				return 0;
+			}
+		    }
+		}
+		return 1;
 	}
 }
